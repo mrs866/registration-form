@@ -1,0 +1,182 @@
+<body>
+<h1>Employee Registration Form</h1>
+
+<div class="container">
+    <form #regForm="ngForm" >
+        <div class="form-group">
+            <label><b> Username</b></label>
+            <input type="text"  
+            id="username" 
+            class="form-control"  
+            placeholder="Enter your name...."
+            required 
+            [(ngModel)]="name"
+            name="name" 
+            #username1="ngModel" 
+            minlength="3"
+            maxlength="10">
+            <div class="help-bpx" *ngIf="!username1.valid && username1.touched" >
+                <div *ngIf="username1.errors.required" style="color:black;">**Please enter your username..</div>
+                <div *ngIf="username1.errors.minlength" style="color:black;">**username should be minimum 3 characters..</div>
+            </div>
+      </div>
+
+          <div class="form-group">
+            <label ><b> Email</b></label>
+            <input type="text"  
+            class="form-control"  
+            autocomplete="off" 
+            placeholder="Enter your Email...."
+            required 
+            [(ngModel)]="email"
+            name="email" 
+            email
+            #email1="ngModel">
+            <div class="help-bpx" *ngIf="!email1.valid && email1.touched" >
+                <div *ngIf="email1.errors.required" style="color:black;">**Please enter your email..</div>
+                <div *ngIf="email1.errors.email" style="color:black;">**Email Must be a valid email Address..</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label ><b> PhoneNumber</b></label>
+            <input type="text"  
+            class="form-control"  
+            autocomplete="off" 
+            placeholder="Enter your PhoneNumber...."
+            required 
+            [(ngModel)]="phoneNumber"
+            name="phoneNumber" 
+            #phoneNumber1="ngModel">
+            <div class="help-bpx" *ngIf="!phoneNumber1.valid && phoneNumber1.touched" >
+                <div *ngIf="phoneNumber1.errors.required" style="color:black;">**Please enter your PhoneNumber..</div>
+                <div *ngIf="phoneNumber1.errors.email" style="color:black;">**PhoneNumber Must be  Add 10 digits..</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Gender</label>
+            <input type="radio" id="male" name="gender" value="male" [(ngModel)]="gender" gender
+            #gender1="ngModel">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female" [(ngModel)]="gender" gender
+            #gender1="ngModel">
+            <label for="female">Female</label>
+            <input type="radio" id="other" name="gender" value="other" [(ngModel)]="gender" 
+            #gender1="ngModel">
+             <label for="other">Other</label>
+             <div class="help-bpx" *ngIf="!gender1.valid && gender1.touched" >
+                <div *ngIf="gender1.errors.required" style="color:black;">**Please enter your Gender..</div>
+            </div>        
+        </div>
+        <div class="form-group">
+            <label>SelectCountry</label>
+            <select id="dropdown" placeholder="Enter the Country" class="form-control"[(ngModel)]="country"
+            name="country" 
+            #country1="ngModel" required>
+                <option value="" selected="" disabled="">SelectCountry</option>
+                <option value="India">India</option>
+                <option value="US">US</option>
+                <option value="Germany">Germany</option>
+                
+            </select>
+            <div class="help-bpx" *ngIf="!country1.valid && country1.touched" >
+                <div *ngIf="country1.errors.required" style="color:black;">**Please enter your Country..</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Date of joining</label>
+            <input type="date" 
+            placeholder="Enter the date of joining" 
+            name="date" 
+            class="form-control" 
+            [(ngModel)]="date" 
+            #date1="ngModel"required>
+            <div class="help-bpx" *ngIf="!date1.valid && date1.touched" >
+                <div *ngIf="date1.errors.required" style="color:black;">**Please select Date here..</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Designation</label><br>
+            <select id="dropdown" 
+            name="designation" 
+            class="form-control"
+             [(ngModel)]="designation" 
+            #designation1="ngModel" required>
+                <option value="" selected="" disabled="">Select designation</option>
+                <option value="Manager">Manager</option>
+                <option value="Developer">Developer</option>
+                <option value="Senior">Designer</option>
+                <option value="Junior">Junior</option>
+            </select>
+            <div class="help-bpx" *ngIf="!designation1.valid && designation1.touched" >
+                <div *ngIf="designation1.errors.required" style="color:black;">**Please select Designation here..</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Company </label>
+            <input type="text" 
+            placeholder="Enter your companyName" 
+            name="company" 
+            class="form-control" 
+            [(ngModel)]="company" 
+            company
+            #company1="ngModel"required>
+            <div class="help-bpx" *ngIf="!company1.valid && company1.touched" >
+                <div *ngIf="company1.errors.required" style="color:black;">**Enter your CompanyName here..</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Salary</label>
+            <input type="text"
+             placeholder="Enter your salary" 
+             name="salary" 
+             class="form-control" 
+            [(ngModel)]="salary" 
+            salary
+            #salary1="ngModel"required >
+            <div class="help-bpx" *ngIf="!salary1.valid && salary1.touched" >
+                <div *ngIf="salary1.errors.required" style="color:black;">**Enter your Salary here..</div>
+            </div>
+        </div> 
+
+        <div class="form-action-buttons">
+            <input type="submit" id="submit" class="submit-button"  (click)="buttonClicked()" 
+            [disabled]="!regForm.valid"><br>
+        </div>
+
+    </form>
+    <table *ngIf="submitted" class="table table-responsive table-striped" id="empoyelist" border="1">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>PhoneNumber</th>
+          <th>Gender</th>
+          <th>Country</th>     
+          <th>Date</th>  
+          <th>Designation</th> 
+          <th>Company</th> 
+          <th>Salary</th>                   
+        </tr>
+        <tr *ngFor="let row of rows">
+          <td>{{row.name | uppercase}}</td>
+          <td>{{row.email}}</td>
+          <td>{{row.phoneNumber}}</td>
+          <td>{{row.gender}}</td>
+          <td>{{row.country}}</td> 
+          <td>{{row.date}}</td>
+          <td>{{row.designation}}</td> 
+          <td>{{row.company}}</td>
+          <td> <div [ngClass]="{'error': row.salary < 500,
+            'warn': row.salary > 500 && row.salary < 1000, 
+            'message': row.salary > 1000}">
+            {{row.salary | currency}}</div>                        
+        </tr>
+      </table>
+</div>
+</body>
+
+
+
+   
+  
+  
+ 

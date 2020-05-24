@@ -1,0 +1,15 @@
+
+
+<h3>Fruit List</h3>
+<h3>Fruits Id = {{fruitsId}}</h3>
+
+
+<ul class="items;" (click)="onselect(fruits)" *ngFor="let fruits of fruits">
+        <span class="badge">{{fruits.id}} </span> <a [routerLink]="['/fruits',fruits.id]">{{fruits.name}}</a>
+    </ul>
+    <p>
+        <button (click)="showOverview()">Overview</button>
+        <button (click)="showContact()">Contact</button>
+    </p>
+    <a (click)="goBack()">Back</a>
+    <a (click)="goNext()">Next</a>
